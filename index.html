@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+</head>
+<body ng-controller="myController">
+    <div class="page-header">
+        <h1>Список</h1>
+    </div>
+    <div class="panel">
+        <form ng-submit="addItem(name, surname, age, average)">
+            <div class="form-inline">
+                <div class="form-group">
+                    <div class="col-md-8">
+                        <input class="form-control" type="text" ng-model="name" placeholder ="Name" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" ng-model="surname" placeholder="Surname" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <input type="number" class="form-control" ng-model="age" placeholder="Age" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <input type="number" class="form-control" ng-model="average" placeholder="Average"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-8">
+                        <button class="btn btn-default" type="submit" ng-disabled="edit">
+                            Add
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-8">
+                        <button class="btn btn-default" type="button" ng-disabled="!edit" ng-click="stopEdit(name, surname, age, average)">
+                            End Edit
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>Age</th>
+                    <th>Average</th>
+                    <th>Delete</th>
+                    <th>Edit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in list">
+                    <td id="name">{{item.name}}</td>
+                    <td id="surname">{{item.surname}}</td>
+                    <td id="age">{{item.age}}</td>
+                    <td id="score" class="avg-score">{{item.average}}</td>
+                    <td>
+                        <button class="btn btn-default" ng-click="delItem($index)" ng-disabled="edit">Delete</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-default" ng-click="editItem($index)">Edit</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            Средний балл:
+        <span>{{sum}}</span>
+        </div>
+    </div>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script type="text/javascript" src="app.js"></script>
+</body>
+</html>
